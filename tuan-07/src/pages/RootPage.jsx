@@ -3,6 +3,7 @@ import RightPage from './RightPage'
 import OverView from '../components/OverView'
 import Header from '../components/Header'
 import DetailReport from '../components/DetailReport'
+import { Outlet } from 'react-router-dom'
 
 const RootPage = () => {
   return (
@@ -16,7 +17,7 @@ const RootPage = () => {
         </div>
         <OverView />
         <div>
-          <DetailReport />
+          <Outlet />
         </div>
       </div>
 
