@@ -1,16 +1,9 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
 import { NotebookText, FileDown, FileUp, Edit } from 'lucide-react';
-const data = [
-    { id: 1, name: 'Elizabeth Lee', avatar: 'https://randomuser.me/api/portraits/women/1.jpg', company: 'AvatarSystems', value: '$359', date: '10/07/2023', status: 'New' },
-    { id: 2, name: 'Carlos Garcia', avatar: 'https://randomuser.me/api/portraits/men/2.jpg', company: 'SmoozeShift', value: '$747', date: '24/07/2023', status: 'New' },
-    { id: 3, name: 'Ryan Young', avatar: 'https://randomuser.me/api/portraits/men/3.jpg', company: 'DataStream Inc.', value: '$769', date: '01/05/2023', status: 'Completed' },
-    { id: 4, name: 'Sophia Martinez', avatar: 'https://randomuser.me/api/portraits/women/4.jpg', company: 'TechSolutions', value: '$412', date: '16/06/2023', status: 'In-progress' },
-    { id: 5, name: 'David Green', avatar: 'https://randomuser.me/api/portraits/men/5.jpg', company: 'BlueWave Ltd.', value: '$100', date: '07/03/2023', status: 'Completed' },
-    { id: 6, name: 'Olivia Brown', avatar: 'https://randomuser.me/api/portraits/women/6.jpg', company: 'DevWorks', value: '$490', date: '12/08/2023', status: 'New' },
-    { id: 7, name: 'James Smith', avatar: 'https://randomuser.me/api/portraits/men/6.jpg', company: 'RapidTech', value: '$550', date: '20/09/2023', status: 'Completed' },
-    // More data to simulate multiple pages
-];
+import { useState } from 'react';
+import { useEffect } from 'react';
+
 
 const columns = [
     {
@@ -95,6 +88,13 @@ const customStyles = {
 
 const DetailReport = () => {
 
+    const [data, setData] = useState()
+
+    useEffect(() => {
+        fetch('https://67f3bf0ccbef97f40d2be9d8.mockapi.io/Users').then(res => res.json())
+            .then(data1 => setData(data1))
+    }, [])
+
 
     return (
         <div className="p-6">
@@ -105,7 +105,7 @@ const DetailReport = () => {
                 </div>
 
                 <div className="flex justify-end items-center gap-3 mb-4">
-                    {/* Nút Import (có icon) */}
+
                     <button
                         className=" hover:bg-gray-200 text-red-400 font-medium px-4 py-2 rounded-md text-sm transition flex items-center gap-2 border-2 border-red-400"
                     >
@@ -113,7 +113,7 @@ const DetailReport = () => {
                         Import
                     </button>
 
-                    {/* Nút Export (có icon) */}
+
                     <button
                         className=" hover:bg-blue-700 text-red-400 font-medium px-4 py-2 rounded-md text-sm transition flex items-center gap-2 border-2 border-red-400"
                     >
@@ -131,7 +131,7 @@ const DetailReport = () => {
                 pagination
                 customStyles={customStyles}
                 highlightOnHover
-            // striped
+                striped
             />
         </div>
     );
